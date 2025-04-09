@@ -18,11 +18,9 @@ Para cada alimento se puede consultar su valor nutricional y las distintas marca
 ### Modelo
 ![image](https://github.com/user-attachments/assets/92e565bf-5c10-4c9c-a0f3-7b0aace1e2c5)
 
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
-
 ## Alcance Funcional 
-
+- Permitir que los usuarios ingresen el tipo y cantidad de alimento al sistema para poder calcular y devolver las cantidades de calorias por alimento-cantidad y por el total de los alimentos
+- 
 ### Alcance Mínimo
 
 *Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
