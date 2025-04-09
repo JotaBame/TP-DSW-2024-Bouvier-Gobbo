@@ -16,7 +16,8 @@ Permite a los usuarios armar y mantener el seguimiento sobre sus dietas. Se podr
 Para cada alimento se puede consultar su valor nutricional y las distintas marcas del mismo. 
 
 ### Modelo
-![imagen del modelo]()
+![image](https://github.com/user-attachments/assets/92e565bf-5c10-4c9c-a0f3-7b0aace1e2c5)
+
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
