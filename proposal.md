@@ -10,9 +10,10 @@
 * [backend app](http://hyperlinkToGihubOrGitlab)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
-## Tema
+## Biz Fitness 
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Permite a los usuarios armar y mantener el seguimiento sobre sus dietas. Se podra crear recetas, a las cuales les corresponden alimentos en determinadas cantidades. 
+Para cada alimento se puede consultar su valor nutricional y las distintas marcas del mismo. 
 
 ### Modelo
 ![imagen del modelo]()
