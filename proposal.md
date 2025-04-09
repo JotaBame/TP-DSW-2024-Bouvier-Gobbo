@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-legajo : 52288 Facundo Gobbo
+* 52288 Facundo Gobbo
+* 50970 Juan Bouvier
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
