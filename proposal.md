@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+legajo : 52288 Facundo Gobbo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
