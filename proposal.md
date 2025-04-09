@@ -18,7 +18,8 @@ Tambien permitira a los usuarios realizar un seguimiento de sus dietas, asignar 
 
 
 ### Modelo
-![image](https://github.com/user-attachments/assets/92e565bf-5c10-4c9c-a0f3-7b0aace1e2c5)
+![Imagen de WhatsApp 2025-04-09 a las 19 53 25_9577f074](https://github.com/user-attachments/assets/970f2414-5015-4031-abbc-fb6e1427e6ab)
+
 
 ## Alcance Funcional 
 - Permitir que los usuarios ingresen el tipo y cantidad de alimento al sistema para poder calcular y devolver las cantidades de calorias por alimento-cantidad y por el total de los alimentos
