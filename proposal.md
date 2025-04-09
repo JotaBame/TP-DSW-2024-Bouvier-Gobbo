@@ -6,8 +6,8 @@
 * 50970 Juan Bouvier
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/JotaBame/TP-DSW-2024-Bouvier-Gobbo/tree/main))
+ 
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Bizz Fitness 
@@ -30,23 +30,22 @@ Tambien permitira a los usuarios realizar un seguimiento de sus dietas, asignar 
   
 ### Alcance Mínimo
 - Permitir que los usuarios ingresen el tipo y cantidad de alimento al sistema para poder calcular y devolver las cantidades de calorias por alimento-cantidad y por el total de los alimentos
-- 
 - Permitir al usuario elegir un objetivo de dieta.
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Alimento<br>3. CRUD Nutriente|
-|CRUD dependiente|1. CRUD Receta {depende de} CRUD Alimento <br>2. CRUD Dieta {depende de} CRUD Usuario|
+|CRUD dependiente|1. CRUD Receta {depende de} CRUD Alimento <br>2. CRUD Objetivos {depende de} CRUD Usuario|
 |Listado<br>+<br>detalle| 1. Listado de alimentos filtrado por nombre, valor nutricional por 100 g => detalle CRUD Alimento<br> 2. Listado de recetas => detalle muestra datos completos de las recetas creadas por el usuario|
-|CUU/Epic|1. Registrar alimento. <br>2. Registrar Receta|
+|CUU/Epic|1. Registrar alimento. <br>2. Registrar Receta<br>3. Registrar Usuario|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Usuario<br>2. CRUD Alimento<br>3. CRUD Nutriente<br>4. CRUD Receta<br>5. CRUD Alimento Receta<br>6. CRUD Objetivo<br>7. CRUD Categoria Subscripcion|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CUU/Epic|1. Registrar alimento. <br>2. Registrar Receta<br>3. Registrar Usuario<br>4. Registrar Subscripcion|
 
 
 ### Alcance Adicional Voluntario
@@ -55,6 +54,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de micronutriente por alimento (exclusivo de membresia) <br>2. Listado de todos los micronutrientes, permite consultar una lista de alimentos que los contenga.<br>3.A final de mes, listado de calorias consumidas por dia y un total a final de mes. Incluye el porcentaje por el cual se excede.|
+|CUU/Epic|1. Registrar calorias consumidas por dia de la semana<br>2. Informar sugerencias de dieta|
+|Otros|1. Envío de recordatorio de vencimiento de Suscripcion|
