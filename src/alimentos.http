@@ -1,0 +1,41 @@
+### obtener todos los alimentos
+
+GET http://localhost:3000/api/alimentos
+
+### obtener un alimento
+
+get http://localhost:3000/api/alimentos/Pollo
+
+### crear un nuevo alimento
+
+POST http://localhost:3000/api/alimentos
+Content-Type: application/json
+
+{
+  "nombre": "Yogurt",
+  "marca": "La Serenísima",
+  "presentacion": null,
+  "unidadMedida": "gramos"
+}
+### Modificar elemento completo 
+put http://localhost:3000/api/alimentos/Yogurt
+Content-Type: application/json
+
+{
+  "nombre": "Yot", 
+  "marca": "Sancor", 
+  "presentacion": null, 
+  "unidadMedida": 123
+
+}
+### Modificar parte de elemento
+PATCH http://localhost:3000/api/alimentos/Yogurt
+Content-Type: application/json
+
+{
+  "marca": "Sancor"
+
+}
+###
+DELETE http://localhost:3000/api/alimentos/Yogurt
+Content-Type: application/json
