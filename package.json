@@ -12,5 +12,8 @@
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
     "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\""
+  },
+  "dependencies": {
+    "pnpm": "^10.12.1"
   }
 }
