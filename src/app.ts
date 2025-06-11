@@ -6,6 +6,7 @@ const app = express()
 //middleWare para trabajar los datos que nos ingresan con el titulo "application/json" 
 app.use(express.json()) 
 
+//validación entrada de datos de alimentos
 
 function sanitizeAlimentoInput(req: Request, res:Response, next:NextFunction){
   req.body.sanitizedInput = {
@@ -21,24 +22,22 @@ function sanitizeAlimentoInput(req: Request, res:Response, next:NextFunction){
       delete req.body.sanitizedInput[key]
     }
   })
-  next()
+  next() //permite que siga hacia la ruta que genera la res
 }
+
+
+//validación entrada de datos de usuarios
 
 function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
   req.body.sanitizedInput = {
-    // TO DO: No deberia dejar agregar un alimento igual a otro. Hay que validar que tanto nombre y marca sean distintos.
-    // TO DO: Evitar que puedan ingresarse tipos de datos no validos.
+
     name:req.body.name,
     type:req.body.type,
     mail:req.body.mail,
     peso:req.body.peso,
     altura:req.body.altura
   }
-  Object.keys(req.body.sanitizedInput).forEach((key) => {
-    if (req.body.sanitizedInput[key] === undefined) {
-      delete req.body.sanitizedInput[key]
-    }
-  })
+ 
   next()
 }
 
@@ -64,21 +63,25 @@ app.get('/api/usuarios',(req, res) => {
 })
 
 app.get('/api/usuarios/:name', (req, res) => {
+
   const usuario = usuarios.find((usuario) => usuario.name === req.params.name)
-    if(!usuario){
-        res.status(404).send({message: 'usuario no encontrado'})
+    if (!usuario){
+      res.status(404).send({message: 'usuario no encontrado'})
+      return 
     }
+
     res.json(usuario)
 })
 
 app.post('/api/usuarios',sanitizeUsuarioInput,(req,res) => {
     //body sería la info del nuevo usuario que nos ingresan
-    const { name, type, mail, peso, altura}  = req.body
+    const { name, type, mail, peso, altura}  = req.body.sanitizedInput
     const new_usuario = new Usuario(name, type, mail, peso, altura)
 
     usuarios.push(new_usuario)
     // el status 201 indica que se creó un nuevo recurso
     res.status(201).send({message: 'usuario creado' , data: new_usuario})
+    return 
 })
 
 app.put('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
@@ -87,17 +90,12 @@ app.put('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
   if (usuarioname === -1) //no lo encontró
     {
       res.status(404).send({message:'Usuario no encontrado'})
+      return 
     } 
-  const input = {
-    name:req.body.name,
-    type:req.body.type,
-    mail:req.body.mail,
-    peso:req.body.peso,
-    altura:req.body.altura
-  }
-  usuarios[usuarioname] = { ...usuarios[usuarioname], ...input}
-  res.status(200).send({message:'Usuario actualizado correctamente', data:alimentos[usuarioname]})
-  
+  usuarios[usuarioname] = { ...usuarios[usuarioname], ...req.body.sanitizedInput}
+
+  res.status(200).send({message:'Usuario actualizado correctamente', data:usuarios[usuarioname]})
+  return 
 })
 
 app.patch('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
@@ -113,7 +111,7 @@ app.patch('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
   }
   usuarios[usuario_peso] = { ...usuarios[usuario_peso], ...input}
   res.status(200).send({message:'Atributo actualizado correctamente', data:alimentos[usuario_peso]})
-  
+  return 
 })
 
 app.delete('/api/usuarios/:name', (req, res) => {
@@ -125,6 +123,7 @@ app.delete('/api/usuarios/:name', (req, res) => {
     }  
   usuarios.splice(usuario_, 1)
   res.status(200).send({message: 'usuarioo borrado exitosamente'})
+  return 
 })
 
 
