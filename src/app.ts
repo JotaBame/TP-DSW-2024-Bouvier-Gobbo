@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from 'express'
-import { Usuario } from "./Ts/usuarios.js"
-import { Alimento } from "./Ts/alimento.js"
+import { Alimento } from "./alimentos/alimento.js"
+import usuariorouter from './usuarios/usuarios.rutas.js'
 
 const app = express()
-//middleWare para trabajar los datos que nos ingresan con el titulo "application/json" 
 app.use(express.json()) 
+app.use('/api/usuarios', usuariorouter)
+
 
 //validación entrada de datos de alimentos
 
@@ -24,116 +25,6 @@ function sanitizeAlimentoInput(req: Request, res:Response, next:NextFunction){
   })
   next() //permite que siga hacia la ruta que genera la res
 }
-
-
-//validación entrada de datos de usuarios
-
-function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
-  req.body.sanitizedInput = {
-
-    name:req.body.name,
-    type:req.body.type,
-    mail:req.body.mail,
-    peso:req.body.peso,
-    altura:req.body.altura
-  }
- 
-  next()
-}
-
-const usuarios = [
-    new Usuario(
-        'pepe',
-        'free',
-        'pepepiola@gmail.com',
-        76,
-        175,
-    ),
-    new Usuario(
-         'juan',
-        'vip',
-        'juanpiola@gmail.com',
-        83,
-        172,
-    ),
-]
-
-app.get('/api/usuarios',(req, res) => {
-    res.json(usuarios);
-})
-
-app.get('/api/usuarios/:name', (req, res) => {
-
-  const usuario = usuarios.find((usuario) => usuario.name === req.params.name)
-    if (!usuario){
-      res.status(404).send({message: 'usuario no encontrado'})
-      return 
-    }
-
-    res.json(usuario)
-})
-
-app.post('/api/usuarios',sanitizeUsuarioInput,(req,res) => {
-    //body sería la info del nuevo usuario que nos ingresan
-    const { name, type, mail, peso, altura}  = req.body.sanitizedInput
-    const new_usuario = new Usuario(name, type, mail, peso, altura)
-
-    usuarios.push(new_usuario)
-    // el status 201 indica que se creó un nuevo recurso
-    res.status(201).send({message: 'usuario creado' , data: new_usuario})
-    return 
-})
-
-app.put('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
- 
-  const usuarioname = usuarios.findIndex((usuario) => usuario.name === req.params.name) 
-  if (usuarioname === -1) //no lo encontró
-    {
-      res.status(404).send({message:'Usuario no encontrado'})
-      return 
-    } 
-  usuarios[usuarioname] = { ...usuarios[usuarioname], ...req.body.sanitizedInput}
-
-  res.status(200).send({message:'Usuario actualizado correctamente', data:usuarios[usuarioname]})
-  return 
-})
-
-app.patch('/api/usuarios/:name', sanitizeUsuarioInput, (req, res) => {
- 
-  const usuario_peso = usuarios.findIndex((usuario) => usuario.name === req.params.name) 
-  if (usuario_peso === -1)
-    {
-      res.status(404).send({message:'Usuario no encontrado'})
-      return
-    } 
-  const input= {
-    peso: req.body.peso
-  }
-  usuarios[usuario_peso] = { ...usuarios[usuario_peso], ...input}
-  res.status(200).send({message:'Atributo actualizado correctamente', data:alimentos[usuario_peso]})
-  return 
-})
-
-app.delete('/api/usuarios/:name', (req, res) => {
-  const usuario_ = usuarios.findIndex((usuario) => usuario.name === req.params.name) 
-  if (usuario_ === -1)
-    {
-      res.status(404).send({message:'Usuario no encontrado'})
-      return
-    }  
-  usuarios.splice(usuario_, 1)
-  res.status(200).send({message: 'usuarioo borrado exitosamente'})
-  return 
-})
-
-
-
-
-
-
-
-
-
 
 
 

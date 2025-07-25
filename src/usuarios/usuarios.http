@@ -4,7 +4,7 @@ GET http://localhost:3000/api/usuarios
 
 ### Obtener un usuario 
 
-GET http://localhost:3000/api/usuarios/Facu
+GET http://localhost:3000/api/usuarios/juan
 
 ### crear un usuario 
 POST http://localhost:3000/api/usuarios
@@ -23,7 +23,7 @@ PUT http://localhost:3000/api/usuarios/Facu
 Content-Type: application/json
 
 {
-    "name" : "Sara",
+    "name" : "Sofi",
     "type" : "Vip",
     "mail" : "ash@gmail.com",
     "peso" : 67,
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 }
 ### Modificar parte de elemento
-PATCH http://localhost:3000/api/usuarios/Sara
+PATCH http://localhost:3000/api/usuarios/Facu
 Content-Type: application/json
 
 {
@@ -39,5 +39,5 @@ Content-Type: application/json
 
 }
 ###
-DELETE http://localhost:3000/api/usuarios/Sara
+DELETE http://localhost:3000/api/usuarios/Facu
 Content-Type: application/json
