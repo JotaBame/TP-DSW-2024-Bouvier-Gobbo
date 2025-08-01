@@ -1,52 +1,52 @@
 import { repositorio } from "../shared/repositorio";
-import { Usuario } from "./usuarios.entidad";
+import { Usuario } from "./usuarios.entidad.js";
+import { pool } from "../DB/conexiones-mysql.js";
+
+
 
 const usuarios = [
     new Usuario(
+        1,
         'pepe',
         'free',
         'pepepiola@gmail.com',
         76,
         175,
-    ),
-    new Usuario(
-         'juan',
-        'vip',
-        'juanpiola@gmail.com',
-        83,
-        172,
+        
     ),
 ]
 
+
 export class usuarioRepositorio implements repositorio <Usuario>{
-    public findAll(): Usuario[] | undefined {
-        return usuarios
+    //asyn permite que se sigan ejecutando otras funciones mientras se espera la respuesta de esta funcion
+    public async findAll(): Promise<Usuario[] | undefined> {
+        //Devuelve una query de sql donde ejeuta el select y lo devuelve en forma de un array
+        const [usuarios] = await pool.query('SELECT * FROM usuarios');
+        return usuarios as Usuario[];
     }   
 
-    public findOne(item: { id: string; }): Usuario | undefined {
-        return usuarios.find((usuario) => usuario.name === item.id) 
+    public async findOne(item: { id:string; }): Promise<Usuario | undefined> {
+        //Convierte el id a un numero entero
+        const id= Number.parseInt(item.id);
+        //el signo de pregunta es reemplazado por los valores pasados en el array (item.id),evita inyecciones sql maliciosas
+        const [usuario] = await pool.query('SELECT * FROM usuarios WHERE id = ?', [id]);
+        // se convierte el array de filas en una de usuarios
+        const usuarios = usuario as Usuario[];
+        if (usuarios.length === 0) {
+            return undefined; // Si no se encuentra el usuario, devuelve undefined
+        }
+        return usuarios[0];
     }
 
-    public add(item: Usuario): Usuario | undefined {
-        usuarios.push(item)
-        return item
+    public async add(item: Usuario): Promise<Usuario | undefined> {
+        throw new Error("Method not implemented.");
     } 
 
-    public update(item: Usuario): Usuario | undefined {
-        const usuarioname = usuarios.findIndex((usuario) => usuario.name === item.name) 
-
-        if (usuarioname !== -1){ //lo encontró 
-        usuarios[usuarioname] = { ...usuarios[usuarioname], ...item}
-        }
-        return usuarios[usuarioname]
+    public async update(item: Usuario): Promise<Usuario | undefined> {
+        throw new Error("Method not implemented.");
     }
 
-    public delete(item: { id: string; }): Usuario | undefined {
-        const usuario_ = usuarios.findIndex((usuario) => usuario.name === item.id) 
-
-        if (usuario_ !== -1){ //lo encontró
-            usuarios.splice(usuario_, 1) // lo remueve
-            return
-        }
+    public async delete(item: { id: string; }): Promise<Usuario | undefined> {
+        throw new Error("Method not implemented.");
     }
-}   
+}

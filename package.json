@@ -14,6 +14,7 @@
     "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\""
   },
   "dependencies": {
+    "mysql2": "^3.14.3",
     "pnpm": "^10.12.1"
   }
 }

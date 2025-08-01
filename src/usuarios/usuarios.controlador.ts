@@ -1,6 +1,7 @@
 import { Request, Response ,NextFunction } from "express"
 import { usuarioRepositorio } from "./usuarios.repositorio.js"
 
+
 const repositorio = new usuarioRepositorio()
 
 function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
@@ -10,18 +11,20 @@ function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
     type:req.body.type,
     mail:req.body.mail,
     peso:req.body.peso,
-    altura:req.body.altura
+    altura:req.body.altura,
+    id: req.body.id
   }
  
   next()
 }
 
-function findAll(req: Request, res: Response) {
-    res.json({ usuarios: repositorio.findAll() });
+ async function findAll(req: Request, res: Response) {
+    const usuarios = await repositorio.findAll();
+    res.json({ usuarios });
 }
 
 function findOne(req: Request, res: Response) {
-  const usuario = repositorio.findOne({ id: req.params.name });
+  const usuario = repositorio.findOne({ id:req.params.id });
   if (!usuario) {
     res.status(404).send({ message: 'usuario no encontrado' });
     return;
