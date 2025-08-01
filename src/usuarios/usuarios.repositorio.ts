@@ -1,6 +1,7 @@
 import { repositorio } from "../shared/repositorio";
 import { Usuario } from "./usuarios.entidad.js";
 import { pool } from "../DB/conexiones-mysql.js";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 
 
@@ -18,7 +19,7 @@ const usuarios = [
 
 
 export class usuarioRepositorio implements repositorio <Usuario>{
-    //asyn permite que se sigan ejecutando otras funciones mientras se espera la respuesta de esta funcion
+    //async permite que se sigan ejecutando otras funciones mientras se espera la respuesta de esta funcion
     public async findAll(): Promise<Usuario[] | undefined> {
         //Devuelve una query de sql donde ejeuta el select y lo devuelve en forma de un array
         const [usuarios] = await pool.query('SELECT * FROM usuarios');
@@ -26,20 +27,26 @@ export class usuarioRepositorio implements repositorio <Usuario>{
     }   
 
     public async findOne(item: { id:string; }): Promise<Usuario | undefined> {
-        //Convierte el id a un numero entero
+        //Convierto el id a un numero entero
         const id= Number.parseInt(item.id);
         //el signo de pregunta es reemplazado por los valores pasados en el array (item.id),evita inyecciones sql maliciosas
         const [usuario] = await pool.query('SELECT * FROM usuarios WHERE id = ?', [id]);
-        // se convierte el array de filas en una de usuarios
+        // se convierte el array de filas en una de usuarios pues, el query no sabe que está devolviendo solo una fila
         const usuarios = usuario as Usuario[];
         if (usuarios.length === 0) {
-            return undefined; // Si no se encuentra el usuario, devuelve undefined
+            return undefined;
         }
-        return usuarios[0];
+        return usuarios[0] as Usuario
     }
 
-    public async add(item: Usuario): Promise<Usuario | undefined> {
-        throw new Error("Method not implemented.");
+    public async add(usuarioInput: Usuario): Promise<Usuario | undefined> {
+        //de esta forma id queda como undefined (ya que es numerico secuencial) y el resto si se solicita
+        const {id, ...resto} = usuarioInput;
+        //nos devuelve una lista con atributos
+        const [result] = await pool.query<ResultSetHeader>('INSERT INTO usuarios set ?',[resto])
+        //el result sirve para que typeScript  pueda interpretar el tipo de dato que devuelve la consulta
+        usuarioInput.id = result.insertId; // asigna el id generado por la base de datos
+        return usuarioInput;
     } 
 
     public async update(item: Usuario): Promise<Usuario | undefined> {

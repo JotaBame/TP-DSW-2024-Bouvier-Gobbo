@@ -11,9 +11,9 @@ POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "name" : "Facu",
-    "type" : "Vip",
-    "mail" : "jiji@gmail.com",
+    "nombre" : "Facu",
+    "tipo" : "Vip",
+    "email" : "jiji@gmail.com",
     "peso" : 75,
     "altura" : 174
 }

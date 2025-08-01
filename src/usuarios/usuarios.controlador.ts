@@ -7,9 +7,9 @@ const repositorio = new usuarioRepositorio()
 function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
   req.body.sanitizedInput = {
 
-    name:req.body.name,
-    type:req.body.type,
-    mail:req.body.mail,
+    nombre:req.body.nombre,
+    tipo:req.body.tipo,
+    email:req.body.email,
     peso:req.body.peso,
     altura:req.body.altura,
     id: req.body.id
@@ -23,8 +23,8 @@ function sanitizeUsuarioInput(req: Request, res:Response, next:NextFunction){
     res.json({ usuarios });
 }
 
-function findOne(req: Request, res: Response) {
-  const usuario = repositorio.findOne({ id:req.params.id });
+async function findOne(req: Request, res: Response) {
+  const usuario = await repositorio.findOne({ id:req.params.id });
   if (!usuario) {
     res.status(404).send({ message: 'usuario no encontrado' });
     return;
@@ -33,15 +33,15 @@ function findOne(req: Request, res: Response) {
   res.json(usuario);
 }
 
-function add(req: Request, res: Response) {
+async function add(req: Request, res: Response) {
     const input = req.body.sanitizedInput;
-    repositorio.add(input);
-    res.status(201).send({ message: 'usuario creado', usuario: input });
+    const usuario = await repositorio.add(input);
+    res.status(201).send({ message: 'usuario creado', usuario });
 }
 
-function update(req: Request, res: Response) {
+async function update(req: Request, res: Response) {
   req.body.sanitizedInput.name = req.params.name;
-  const usuario = repositorio.update(req.body.sanitizedInput);
+  const usuario = await repositorio.update(req.body.sanitizedInput);
 
   if (!usuario) //no lo encontró
     {
@@ -53,9 +53,9 @@ function update(req: Request, res: Response) {
   return 
 }
 
-function patch(req: Request, res: Response) {
+async function patch(req: Request, res: Response) {
   req.body.sanitizedInput.name = req.params.name
-  const usuario = repositorio.update(req.body.sanitizedInput)
+  const usuario = await repositorio.update(req.body.sanitizedInput)
 
   if (!usuario) //no lo encontró
     {
@@ -67,9 +67,9 @@ function patch(req: Request, res: Response) {
   return 
 }
 
-function deleteUsuario(req: Request, res: Response) {
+async function deleteUsuario(req: Request, res: Response) {
   const id = req.params.name;
-  const usuario = repositorio.delete({ id });
+  const usuario = await repositorio.delete({ id });
 
   if (!usuario)
     {
