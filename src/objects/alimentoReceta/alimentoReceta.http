@@ -1,0 +1,33 @@
+### Obtener todos los alimentoReceta
+GET http://localhost:3000/api/alimentoReceta
+
+### Obtener un alimentoReceta
+GET http://localhost:3000/api/alimentoReceta/1
+
+### Crear un alimentoReceta
+POST http://localhost:3000/api/alimentoReceta
+Content-Type: application/json
+{
+  "idAlimento": 1,
+  "idRecetaAsociada": 1,
+  "cantidadPorUnidad": 100
+}
+
+### Modificar alimentoReceta completo
+PUT http://localhost:3000/api/alimentoReceta/1
+Content-Type: application/json
+{
+  "idAlimento": 2,
+  "idRecetaAsociada": 2,
+  "cantidadPorUnidad": 200
+}
+
+### Modificar parte del alimentoReceta
+PATCH http://localhost:3000/api/alimentoReceta/1
+Content-Type: application/json
+{
+  "cantidadPorUnidad": 150
+}
+
+### Borrar alimentoReceta
+DELETE http://localhost:3000/api/alimentoReceta/1

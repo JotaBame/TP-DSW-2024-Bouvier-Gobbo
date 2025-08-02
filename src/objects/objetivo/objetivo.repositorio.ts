@@ -1,6 +1,6 @@
-import { repositorio } from "../shared/repositorio";
+import { repositorio } from "../../shared/repositorio";
 import { Objetivo } from "./objetivo.entidad.js";
-import { pool } from "../DB/conexiones-mysql.js";
+import { pool } from "../../DB/conexiones-mysql.js";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 const objetivos = [

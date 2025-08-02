@@ -1,0 +1,36 @@
+
+### Obtener todas las recetas
+GET http://localhost:3000/api/receta
+
+### Obtener una receta
+GET http://localhost:3000/api/receta/1
+
+### Crear una receta
+POST http://localhost:3000/api/receta
+Content-Type: application/json
+{
+  "nombre": "Tarta de Arandanos",
+  "Descripcion": "Rica tarta",
+  "idAutor": 1,
+  "alimentosReceta": [1]
+}
+
+### Modificar receta completa
+PUT http://localhost:3000/api/receta/1
+Content-Type: application/json
+{
+  "nombre": "Tarta de Verdura",
+  "Descripcion": "Tarta saludable",
+  "idAutor": 1,
+  "alimentosReceta": []
+}
+
+### Modificar parte de la receta
+PATCH http://localhost:3000/api/receta/1
+Content-Type: application/json
+{
+  "Descripcion": "Tarta muy saludable"
+}
+
+### Borrar receta
+DELETE http://localhost:3000/api/receta/1

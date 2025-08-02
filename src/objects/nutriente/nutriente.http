@@ -1,0 +1,32 @@
+
+### Obtener todos los nutrientes
+GET http://localhost:3000/api/nutriente
+
+### Obtener un nutriente
+GET http://localhost:3000/api/nutriente/1
+
+### Crear un nutriente
+POST http://localhost:3000/api/nutriente
+Content-Type: application/json
+{
+  "nombre": "Proteína",
+  "unidadMedida": "gramos"
+}
+
+### Modificar nutriente completo
+PUT http://localhost:3000/api/nutriente/1
+Content-Type: application/json
+{
+  "nombre": "Carbohidrato",
+  "unidadMedida": "gramos"
+}
+
+### Modificar parte del nutriente
+PATCH http://localhost:3000/api/nutriente/1
+Content-Type: application/json
+{
+  "unidadMedida": "miligramos"
+}
+
+### Borrar nutriente
+DELETE http://localhost:3000/api/nutriente/1
