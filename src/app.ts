@@ -1,11 +1,12 @@
 import express, { Request, Response, NextFunction } from 'express'
 import { Alimento } from "./alimentos/alimento.js"
 import usuariorouter from './usuarios/usuarios.rutas.js'
+import objetivorouter from './objetivo/objetivo.rutas.js'
 
 const app = express()
 app.use(express.json()) 
 app.use('/api/usuarios', usuariorouter)
-
+app.use('/api/objetivos', objetivorouter)
 
 //validación entrada de datos de alimentos
 
