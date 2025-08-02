@@ -9,7 +9,7 @@ function sanitizeRecetaInput(req: Request, res: Response, next: NextFunction) {
     nombre: req.body.nombre,
     Descripcion: req.body.Descripcion,
     idAutor: req.body.idAutor,
-    alimentosReceta: req.body.alimentosReceta
+    idAlimentosReceta: req.body.idAlimentosReceta
   }
   next()
 }

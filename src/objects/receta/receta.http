@@ -12,7 +12,7 @@ Content-Type: application/json
   "nombre": "Tarta de Arandanos",
   "Descripcion": "Rica tarta",
   "idAutor": 1,
-  "alimentosReceta": [1]
+  "idAlimentosReceta": [1]
 }
 
 ### Modificar receta completa
@@ -22,7 +22,7 @@ Content-Type: application/json
   "nombre": "Tarta de Verdura",
   "Descripcion": "Tarta saludable",
   "idAutor": 1,
-  "alimentosReceta": []
+  "idAlimentosReceta": [1, 2]
 }
 
 ### Modificar parte de la receta
