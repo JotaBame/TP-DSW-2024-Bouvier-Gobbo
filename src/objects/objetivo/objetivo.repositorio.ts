@@ -9,33 +9,30 @@ const objetivos = [
         1, // idUsuario
         70, // pesoDeseado
         new Date('2025-08-01'), // fechaInicio
-        new Date('2025-12-31') // fechaFin
+        new Date('2025-12-31'), // fechaFin
+        [1,2,3] // recetasObjetivo ejemplo
     ),
 ]
 
 export class objetivoRepositorio implements repositorio <Objetivo>{
     public async findAll(): Promise<Objetivo[] | undefined> {
-        const [objetivos] = await pool.query('SELECT * FROM objetivos');
-        // Mapear fechas a objetos Date si es necesario
-        return objetivos as Objetivo[];
+        // NOTA: recetasObjetivo debería obtenerse de una tabla relacional, aquí es mock
+        return objetivos;
     }
     public async findOne(item: { id: string; }): Promise<Objetivo | undefined> {
         const id = Number.parseInt(item.id);
-        const [objetivo] = await pool.query('SELECT * FROM objetivos WHERE idObjetivo = ?', [id]);
-        const objetivos = objetivo as Objetivo[];
-        if (objetivos.length === 0) {
-            return undefined;
-        }
-         return objetivos[0] as Objetivo;
+        return objetivos.find(o => o.idObjetivo === id);
     }
     public async add(objetivoInput: Objetivo): Promise<Objetivo | undefined> {
-        const { idObjetivo, ...resto } = objetivoInput;
-        const [result] = await pool.query<ResultSetHeader>('INSERT INTO objetivos set ?', [resto]);
-        objetivoInput.idObjetivo = result.insertId;
+        objetivoInput.idObjetivo = objetivos.length + 1;
+        objetivos.push(objetivoInput);
         return objetivoInput;
     }
     public async update(item: Objetivo): Promise<Objetivo | undefined> {
-        throw new Error("Method not implemented.");
+        const idx = objetivos.findIndex(o => o.idObjetivo === item.idObjetivo);
+        if (idx === -1) return undefined;
+        objetivos[idx] = item;
+        return item;
     }
     public async delete(item: { id: string; }): Promise<Objetivo | undefined> {
         throw new Error("Method not implemented.");

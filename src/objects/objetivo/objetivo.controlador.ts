@@ -10,7 +10,8 @@ function sanitizeObjetivoInput(req: Request, res:Response, next:NextFunction){
     idUsuario: req.body.idUsuario,
     pesoDeseado: req.body.pesoDeseado,
     fechaInicio: req.body.fechaInicio ? new Date(req.body.fechaInicio) : undefined,
-    fechaFin: req.body.fechaFin ? new Date(req.body.fechaFin) : undefined
+    fechaFin: req.body.fechaFin ? new Date(req.body.fechaFin) : undefined,
+    recetasObjetivo: Array.isArray(req.body.recetasObjetivo) ? req.body.recetasObjetivo : []
   }
   next()
 }

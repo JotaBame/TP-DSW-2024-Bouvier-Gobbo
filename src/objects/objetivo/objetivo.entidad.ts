@@ -4,6 +4,7 @@ export class Objetivo {
         public idUsuario: number,
         public pesoDeseado: number,
         public fechaInicio: Date,
-        public fechaFin: Date
+        public fechaFin: Date,
+        public recetasObjetivo: number[]
     ) {}
 }

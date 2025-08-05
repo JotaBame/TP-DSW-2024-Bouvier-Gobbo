@@ -1,0 +1,33 @@
+
+### Obtener todas las categorías
+GET http://localhost:3000/api/categorias
+
+### Obtener una categoría
+GET http://localhost:3000/api/categorias/1
+
+### Crear una categoría
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+{
+    "nombre": "Premium",
+    "descripcion": "Algunos beneficios"
+}
+
+### Modificar una categoría
+PUT http://localhost:3000/api/categorias/1
+Content-Type: application/json
+{
+    "nombre": "Deluxe",
+    "descripcion": "Algunos beneficios"
+}
+
+### Modificar parte de una categoría
+PATCH http://localhost:3000/api/categorias/1
+Content-Type: application/json
+{
+    "descripcion": "Todos los beneficios"
+}
+
+### Eliminar una categoría
+DELETE http://localhost:3000/api/categorias/1
+Content-Type: application/json
