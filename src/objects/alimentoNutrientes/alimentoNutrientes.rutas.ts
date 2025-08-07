@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { sanitizeAlimentoNutrienteInput, findAll, findOne, add, update, deleteAlimentoNutriente } from "./alimentoNutriente.controlador.js"
+import { sanitizeAlimentoNutrienteInput, findAll, findOne, add, update, deleteAlimentoNutriente } from "./alimentoNutrientes.controlador.js"
 
 export const alimentoNutrienterouter = Router()
 

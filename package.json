@@ -14,7 +14,12 @@
     "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\""
   },
   "dependencies": {
+    "@mikro-orm/core": "6.4.16",
+    "@mikro-orm/mysql": "6.4.16",
+    "@mikro-orm/seeder": "6.4.16",
+    "@mikro-orm/sql-highlighter": "1.0.1",
     "mysql2": "^3.14.3",
-    "pnpm": "^10.12.1"
+    "pnpm": "^10.12.1",
+    "reflect-metadata": "0.2.2"
   }
 }

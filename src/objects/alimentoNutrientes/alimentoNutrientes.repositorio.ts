@@ -1,5 +1,5 @@
 import { repositorio } from "../../shared/repositorio";
-import { AlimentoNutriente } from "./alimentoNutriente.entidad";
+import { AlimentoNutriente } from "./alimentoNutrientes.entidad";
 import { pool } from "../../DB/conexiones-mysql";
 
 import { ResultSetHeader, RowDataPacket } from "mysql2";

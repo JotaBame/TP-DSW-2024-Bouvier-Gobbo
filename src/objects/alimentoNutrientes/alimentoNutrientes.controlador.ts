@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import { alimentoNutrienteRepositorio } from "./alimentoNutriente.repositorio"
+import { alimentoNutrienteRepositorio } from "./alimentoNutrientes.repositorio"
 
 const repositorio = new alimentoNutrienteRepositorio()
 
