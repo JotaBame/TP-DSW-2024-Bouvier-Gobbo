@@ -33,9 +33,9 @@ export async function add(req: Request, res: Response) {
     res.status(201).send({ message: 'Categoría creada', categoria });
 }
 
-export async function update(req: Request, res: Response) {
+export async function update(id:string, req: Request, res: Response) {
     const input = req.body.sanitizedInput;
-    const categoria = await repositorio.update(input);
+    const categoria = await repositorio.update(input.id, input);
     if (!categoria) {
         res.status(404).send({ message: 'Categoría no encontrada' });
         return;

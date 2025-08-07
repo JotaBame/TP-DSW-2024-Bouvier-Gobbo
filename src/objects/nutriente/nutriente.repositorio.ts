@@ -29,8 +29,12 @@ export class nutrienteRepositorio implements repositorio<Nutriente> {
         const [result] = await pool.query<ResultSetHeader>('INSERT INTO nutrientes set ?', [nutrienteInput]);
         return nutrienteInput;
     }
-    public async update(item: Nutriente): Promise<Nutriente | undefined> {
-        throw new Error("Method not implemented.");
+    public async update(id:string,item: Nutriente): Promise<Nutriente | undefined> {
+        const [result] = await pool.query<ResultSetHeader>('UPDATE nutrientes SET ? WHERE id = ?', [item, id]);
+        if (result.affectedRows === 0) {
+            return undefined;
+        }
+        return item;
     }
     public async delete(item: { id: string; }): Promise<Nutriente | undefined> {
         throw new Error("Method not implemented.");

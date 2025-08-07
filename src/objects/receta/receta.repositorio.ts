@@ -26,7 +26,7 @@ export class recetaRepositorio implements repositorio<Receta> {
         const [result] = await pool.query<ResultSetHeader>('INSERT INTO receta set ?', [recetaInput]);
         return recetaInput;
     }
-    public async update(item: Receta): Promise<Receta | undefined> {
+    public async update(id:string, item: Receta): Promise<Receta | undefined> {
         throw new Error("Method not implemented.");
     }
     public async delete(item: { id: string; }): Promise<Receta | undefined> {

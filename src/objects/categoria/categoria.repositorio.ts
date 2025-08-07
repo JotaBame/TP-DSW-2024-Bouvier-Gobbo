@@ -19,7 +19,7 @@ export class categoriaRepositorio implements repositorio<Categoria> {
         categorias.push(categoria);
         return categoria;
     }
-    async update(categoria: Categoria): Promise<Categoria | undefined> {
+    async update(id:string, categoria: Categoria): Promise<Categoria | undefined> {
         const idx = categorias.findIndex(c => c.id === categoria.id);
         if (idx === -1) return undefined;
         categorias[idx] = categoria;

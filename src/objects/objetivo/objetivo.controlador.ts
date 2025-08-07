@@ -40,7 +40,7 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   const input = req.body.sanitizedInput;
   input.idObjetivo = Number.parseInt(req.params.id);
-  const objetivo = await repositorio.update(input.idObjetivo, req.body.sanitizedInput);
+  const objetivo = await repositorio.update(input.idObjetivo, input);
 
   if (!objetivo) {
     res.status(404).send({ message: 'Objetivo no encontrado' });

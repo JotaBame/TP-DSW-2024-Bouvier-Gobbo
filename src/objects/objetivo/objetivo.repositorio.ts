@@ -28,7 +28,7 @@ export class objetivoRepositorio implements repositorio <Objetivo>{
         objetivos.push(objetivoInput);
         return objetivoInput;
     }
-    public async update(item: Objetivo): Promise<Objetivo | undefined> {
+    public async update(id:string, item: Objetivo): Promise<Objetivo | undefined> {
         const idx = objetivos.findIndex(o => o.idObjetivo === item.idObjetivo);
         if (idx === -1) return undefined;
         objetivos[idx] = item;

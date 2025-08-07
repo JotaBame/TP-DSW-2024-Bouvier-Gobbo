@@ -36,7 +36,7 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   req.body.sanitizedInput.id = req.params.id;
-  const alimentoNutriente = await repositorio.update(req.body.sanitizedInput);
+  const alimentoNutriente = await repositorio.update(req.body.sanitizedInput.id, req.body.sanitizedInput);
   if (!alimentoNutriente) {
     res.status(404).send({ message: 'AlimentoNutriente no encontrado' });
     return;

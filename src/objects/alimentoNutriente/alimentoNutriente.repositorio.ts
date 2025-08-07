@@ -31,7 +31,7 @@ export class alimentoNutrienteRepositorio implements repositorio<AlimentoNutrien
         const [result] = await pool.query<ResultSetHeader>('INSERT INTO alimentoNutriente set ?', [alimentoNutrienteInput]);
         return alimentoNutrienteInput;
     }
-    public async update(item: AlimentoNutriente): Promise<AlimentoNutriente | undefined> {
+    public async update(id:string, item: AlimentoNutriente): Promise<AlimentoNutriente | undefined> {
         throw new Error("Method not implemented.");
     }
     public async delete(item: { id: string; }): Promise<AlimentoNutriente | undefined> {
