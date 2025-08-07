@@ -19,13 +19,13 @@ Content-Type: application/json
 }
 
 ### Modificar elemento completo 
-PUT http://localhost:3000/api/usuarios/Facu
+PUT http://localhost:3000/api/usuarios/2
 Content-Type: application/json
 
 {
-    "name" : "Sofi",
-    "type" : "Vip",
-    "mail" : "ash@gmail.com",
+    "nombre" : "Sofi",
+    "tipo" : "Vip",
+    "email" : "ash@gmail.com",
     "peso" : 67,
     "altura" : 170
 
@@ -39,5 +39,5 @@ Content-Type: application/json
 
 }
 ###
-DELETE http://localhost:3000/api/usuarios/Facu
+DELETE http://localhost:3000/api/usuarios/7
 Content-Type: application/json

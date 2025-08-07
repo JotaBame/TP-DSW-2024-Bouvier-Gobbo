@@ -40,7 +40,7 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   const input = req.body.sanitizedInput;
   input.idObjetivo = Number.parseInt(req.params.id);
-  const objetivo = await repositorio.update(input);
+  const objetivo = await repositorio.update(input.idObjetivo, req.body.sanitizedInput);
 
   if (!objetivo) {
     res.status(404).send({ message: 'Objetivo no encontrado' });
@@ -49,6 +49,7 @@ async function update(req: Request, res: Response) {
 
   res.status(200).send({ message: 'Objetivo actualizado correctamente', data: objetivo });
 }
+
 
 async function deleteObjetivo(req: Request, res: Response) {
   const objetivo = await repositorio.delete({ id: req.params.id });
