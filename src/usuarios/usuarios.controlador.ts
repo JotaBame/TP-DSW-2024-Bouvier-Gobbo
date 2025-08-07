@@ -40,8 +40,8 @@ async function add(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-  req.body.sanitizedInput.name = req.params.name;
-  const usuario = await repositorio.update(req.body.sanitizedInput);
+  req.body.sanitizedInput.id = req.params.id;
+  const usuario = await repositorio.update(req.params.id, req.body.sanitizedInput);
 
   if (!usuario) //no lo encontró
     {
@@ -54,8 +54,8 @@ async function update(req: Request, res: Response) {
 }
 
 async function patch(req: Request, res: Response) {
-  req.body.sanitizedInput.name = req.params.name
-  const usuario = await repositorio.update(req.body.sanitizedInput)
+  req.body.sanitizedInput.id = req.params.id
+  const usuario = await repositorio.update(req.params.id , req.body.sanitizedInput)
 
   if (!usuario) //no lo encontró
     {
@@ -68,15 +68,15 @@ async function patch(req: Request, res: Response) {
 }
 
 async function deleteUsuario(req: Request, res: Response) {
-  const id = req.params.name;
+  const id = req.params.id;
   const usuario = await repositorio.delete({ id });
 
   if (!usuario)
     {
-      res.status(200).send({message: 'usuario borrado exitosamente'})
+      res.status(404).send({message:'Usuario no encontrado'})
       return 
     } 
-  res.status(404).send({message:'Usuario no encontrado'})
+  res.status(200).send({message: 'usuario borrado exitosamente'})
   return
 }
 

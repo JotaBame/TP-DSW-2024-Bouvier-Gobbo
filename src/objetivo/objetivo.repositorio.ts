@@ -34,7 +34,7 @@ export class objetivoRepositorio implements repositorio <Objetivo>{
         objetivoInput.idObjetivo = result.insertId;
         return objetivoInput;
     }
-    public async update(item: Objetivo): Promise<Objetivo | undefined> {
+    public async update(id: string, item: Objetivo): Promise<Objetivo | undefined> {
         throw new Error("Method not implemented.");
     }
     public async delete(item: { id: string; }): Promise<Objetivo | undefined> {
