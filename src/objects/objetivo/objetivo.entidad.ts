@@ -16,7 +16,7 @@ export class Objetivo extends BaseEntity {
   @PrimaryKey()
   id!: number;
 
-  @OneToOne(() => Usuario, (usuario) => usuario.id, { nullable: false })
+  @OneToOne(() => Usuario, { nullable: false })
   usuario!: Usuario;
 
   @ManyToOne(() => Receta, { nullable: false, cascade: [Cascade.ALL] })

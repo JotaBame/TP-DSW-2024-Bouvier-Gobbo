@@ -3,6 +3,7 @@ import {
   OneToOne,
   Property,
   Cascade,
+  Rel,
   ManyToOne,
   PrimaryKey,
 } from '@mikro-orm/core';
@@ -15,12 +16,12 @@ export class AlimentoReceta extends BaseEntity {
   @PrimaryKey()
   id!: number;
 
-  @OneToOne(() => Alimento, (alimento) => alimento.id, { nullable: false })
-  alimento!: Alimento;
+  @OneToOne(() => Alimento, { nullable: false })
+  alimento!: Rel<Alimento>;
 
   @ManyToOne(() => Receta, { nullable: false, cascade: [Cascade.ALL] })
-  receta!: Receta;
-  
+  receta!: Rel<Receta>;
+
   @Property()
   cantidadPorUnidad!: number;
 }

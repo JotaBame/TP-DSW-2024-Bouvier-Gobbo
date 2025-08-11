@@ -8,7 +8,7 @@ import {
 import { BaseEntity } from '../../shared/baseEntity.entity.js';
  
 @Entity()
-export class Categoria extends BaseEntity {
+export class CategoriaSuscripcion extends BaseEntity {
   @PrimaryKey()
   id!: number;
 

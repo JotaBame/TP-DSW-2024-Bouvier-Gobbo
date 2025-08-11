@@ -14,7 +14,7 @@ import { AlimentoReceta } from '../alimentoReceta/alimentoReceta.entidad.js';
 @Entity()
 export class Receta extends BaseEntity {
 
- @OneToOne(() => Usuario, (autor) => autor.id)
+ @OneToOne(() => Usuario)
   autor!: Usuario;
 
   @ManyToOne(() => AlimentoReceta, { nullable: false, cascade: [Cascade.ALL] })
