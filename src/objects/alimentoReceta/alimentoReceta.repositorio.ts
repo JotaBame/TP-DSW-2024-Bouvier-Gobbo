@@ -3,9 +3,7 @@ import { AlimentoReceta } from "./alimentoReceta.entidad";
 import { pool } from "../../DB/conexiones-mysql";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-const alimentoRecetas = [
-    new AlimentoReceta(1, 1, 1, 100),
-];
+ 
 
 export class alimentoRecetaRepositorio implements repositorio<AlimentoReceta> {
     public async findAll(): Promise<AlimentoReceta[] | undefined> {

@@ -1,8 +1,23 @@
+import {
+  Entity,
+   Property,
+ 
+  PrimaryKey,
+} from '@mikro-orm/core';
+ 
+import { BaseEntity } from '../../shared/baseEntity.entity.js';
+ 
+@Entity()
+export class Categoria extends BaseEntity {
+  @PrimaryKey()
+  id!: number;
 
-export class Categoria {
-    constructor(
-        public id: number,
-        public nombre: string,
-        public descripcion: string
-    ) {}
+  @Property()
+  nombre!: string;
+
+  @Property()
+  descripcion!: string;
+ 
 }
+
+ 

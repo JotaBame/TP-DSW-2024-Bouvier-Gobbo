@@ -5,17 +5,7 @@ import { ResultSetHeader } from "mysql2"
 
 
 
-const usuarios = [
-    new Usuario(
-        1,
-        'pepe',
-        'free',
-        'pepepiola@gmail.com',
-        76,
-        175,
-        
-    ),
-]
+ 
 
 
 export class usuarioRepositorio implements repositorio <Usuario>{

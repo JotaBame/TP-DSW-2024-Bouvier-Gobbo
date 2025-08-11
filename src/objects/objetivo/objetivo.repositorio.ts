@@ -3,36 +3,30 @@ import { Objetivo } from "./objetivo.entidad.js";
 import { pool } from "../../DB/conexiones-mysql.js";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-const objetivos = [
-    new Objetivo(
-        1, // idObjetivo
-        1, // idUsuario
-        70, // pesoDeseado
-        new Date('2025-08-01'), // fechaInicio
-        new Date('2025-12-31'), // fechaFin
-        [1,2,3] // recetasObjetivo ejemplo
-    ),
-]
-
+ 
 export class objetivoRepositorio implements repositorio <Objetivo>{
     public async findAll(): Promise<Objetivo[] | undefined> {
-        // NOTA: recetasObjetivo debería obtenerse de una tabla relacional, aquí es mock
-        return objetivos;
+         const [objetivos] = await pool.query('SELECT * FROM objetivos');
+        return objetivos as Objetivo[];
     }
     public async findOne(item: { id: string; }): Promise<Objetivo | undefined> {
         const id = Number.parseInt(item.id);
-        return objetivos.find(o => o.idObjetivo === id);
+        const [objetivo] = await pool.query('SELECT * FROM objetivos WHERE id = ?', [id]);
+        const objetivos = objetivo as Objetivo[];
+        return objetivos[0] as Objetivo;
     }
     public async add(objetivoInput: Objetivo): Promise<Objetivo | undefined> {
-        objetivoInput.idObjetivo = objetivos.length + 1;
-        objetivos.push(objetivoInput);
+        const [result] = await pool.query<ResultSetHeader>('INSERT INTO objetivos set ?', [objetivoInput]);
+        objetivoInput.id = result.insertId;
         return objetivoInput;
     }
     public async update(id:string, item: Objetivo): Promise<Objetivo | undefined> {
-        const idx = objetivos.findIndex(o => o.idObjetivo === item.idObjetivo);
-        if (idx === -1) return undefined;
-        objetivos[idx] = item;
+        const [result] = await pool.query<ResultSetHeader>('UPDATE objetivos SET ? WHERE idObjetivo = ?', [item, id]);
+        if (result.affectedRows === 0) {
+            return undefined;
+        }
         return item;
+ 
     }
     public async delete(item: { id: string; }): Promise<Objetivo | undefined> {
         throw new Error("Method not implemented.");

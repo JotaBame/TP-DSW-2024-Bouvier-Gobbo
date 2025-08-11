@@ -3,15 +3,7 @@ import { Alimento } from "./alimento.entidad.js";
 import { pool } from "../../DB/conexiones-mysql.js";
 import { ResultSetHeader } from "mysql2";
 
-const alimentos = [
-    new Alimento(
-        1,
-        "Arandanos",
-        "Arcor",
-        null,
-        "gramos"
-    ),
-]
+ 
 
 export class alimentoRepositorio implements repositorio<Alimento> {
     public async findAll(): Promise<Alimento[] | undefined> {

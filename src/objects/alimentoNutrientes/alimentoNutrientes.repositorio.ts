@@ -1,40 +1,33 @@
 import { repositorio } from "../../shared/repositorio";
-import { AlimentoNutriente } from "./alimentoNutrientes.entidad";
+import { AlimentoNutrientes } from "./alimentoNutrientes.entidad";
 import { pool } from "../../DB/conexiones-mysql";
 
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-const alimentoNutrientes = [
-    new AlimentoNutriente(
-        1, // id
-        1, // idAlimento
-        [1, 2], // idNutriente
-        100 // cantidad
-    ),
-];
+ 
 
-export class alimentoNutrienteRepositorio implements repositorio<AlimentoNutriente> {
-    public async findAll(): Promise<AlimentoNutriente[] | undefined> {
+export class alimentoNutrienteRepositorio implements repositorio<AlimentoNutrientes> {
+    public async findAll(): Promise<AlimentoNutrientes[] | undefined> {
         const [alimentoNutrientes] = await pool.query('SELECT * FROM alimentoNutriente');
-        return alimentoNutrientes as AlimentoNutriente[];
+        return alimentoNutrientes as AlimentoNutrientes[];
     }
-    public async findOne(item: { id: string; }): Promise<AlimentoNutriente | undefined> {
+    public async findOne(item: { id: string; }): Promise<AlimentoNutrientes | undefined> {
         const id = Number.parseInt(item.id);
         const [alimentoNutriente] = await pool.query('SELECT * FROM alimentoNutriente WHERE id = ?', [id]);
-        const alimentoNutrientes = alimentoNutriente as AlimentoNutriente[];
+        const alimentoNutrientes = alimentoNutriente as AlimentoNutrientes[];
         if (alimentoNutrientes.length === 0) {
             return undefined;
         }
-        return alimentoNutrientes[0] as AlimentoNutriente;
+        return alimentoNutrientes[0] as AlimentoNutrientes;
     }
-    public async add(alimentoNutrienteInput: AlimentoNutriente): Promise<AlimentoNutriente | undefined> {
+    public async add(alimentoNutrienteInput: AlimentoNutrientes): Promise<AlimentoNutrientes | undefined> {
         const [result] = await pool.query<ResultSetHeader>('INSERT INTO alimentoNutriente set ?', [alimentoNutrienteInput]);
         return alimentoNutrienteInput;
     }
-    public async update(id:string, item: AlimentoNutriente): Promise<AlimentoNutriente | undefined> {
+    public async update(id:string, item: AlimentoNutrientes): Promise<AlimentoNutrientes | undefined> {
         throw new Error("Method not implemented.");
     }
-    public async delete(item: { id: string; }): Promise<AlimentoNutriente | undefined> {
+    public async delete(item: { id: string; }): Promise<AlimentoNutrientes | undefined> {
         throw new Error("Method not implemented.");
     }
 }

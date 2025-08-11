@@ -3,13 +3,7 @@ import { Nutriente } from "./nutriente.entidad.js";
 import { pool } from "../../DB/conexiones-mysql.js";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-const nutrientes = [
-    new Nutriente(
-        1,
-        "Proteína",
-        "gramos"
-    ),
-]
+ 
 
 export class nutrienteRepositorio implements repositorio<Nutriente> {
     public async findAll(): Promise<Nutriente[] | undefined> {
