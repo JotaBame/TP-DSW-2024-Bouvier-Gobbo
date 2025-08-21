@@ -1,7 +1,7 @@
 import { repositorio } from "../../shared/repositorio";
 import { Alimento } from "./alimento.entidad.js";
-import { pool } from "../../DB/conexiones-mysql.js";
-import { ResultSetHeader } from "mysql2";
+import { pool } from "../../DB/conexiones-mysql"
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
  
 
@@ -26,13 +26,8 @@ export class alimentoRepositorio implements repositorio<Alimento> {
         const [result] = await pool.query<ResultSetHeader>('INSERT INTO alimentos set ?', [alimentoInput]);
         return alimentoInput;
     }
-    public async update(id: string, alimentoInput: Alimento): Promise<Alimento | undefined> {
-        const alimentoID = Number.parseInt(id);
-        const [result] = await pool.query<ResultSetHeader>('UPDATE alimentos SET ? WHERE id = ?', [alimentoInput, alimentoID]);
-        if (result.affectedRows === 0) {
-            return undefined;
-        }
-        return alimentoInput;
+    public async update(item: Alimento): Promise<Alimento | undefined> {
+        throw new Error("Method not implemented.");
     }
     public async delete(item: { id: string; }): Promise<Alimento | undefined> {
         throw new Error("Method not implemented.");

@@ -41,7 +41,7 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   req.body.sanitizedInput.id = req.params.id;
-  const usuario = await repositorio.update(req.body.sanitizeUsuarioInput.id, req.body.sanitizedInput);
+  const usuario = await repositorio.update(req.params.id, req.body.sanitizedInput);
 
   if (!usuario) //no lo encontró
     {

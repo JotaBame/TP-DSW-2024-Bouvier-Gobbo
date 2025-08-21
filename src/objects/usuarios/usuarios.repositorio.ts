@@ -1,7 +1,7 @@
 import { repositorio } from "../../shared/repositorio"
 import { Usuario } from "./usuarios.entidad.js"
-import { pool } from "../../DB/conexiones-mysql.js"
-import { ResultSetHeader } from "mysql2"
+import { pool } from "../../DB/conexiones-mysql";
+import { ResultSetHeader, RowDataPacket } from "mysql2"
 
 
 
