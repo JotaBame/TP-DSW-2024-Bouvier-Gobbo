@@ -1,4 +1,3 @@
-import { connect } from 'http2';
 import mysql from 'mysql2/promise';
 
 //la configuracion que tiene la conexion a la base de datos más el guapo usuario con el que se ingresa
