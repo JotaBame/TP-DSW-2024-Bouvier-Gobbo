@@ -1,7 +1,8 @@
 create database IF NOT EXISTS tp;
 use tp;
 create user IF NOT EXISTS dsw@'%' identified by '1234';
-grant all privileges on tp.* to dsw@'%';
+grant all privileges on tp.* to dsw@'%'; 
+
 
 create table IF NOT EXISTS usuarios (
     id int auto_increment primary key,
