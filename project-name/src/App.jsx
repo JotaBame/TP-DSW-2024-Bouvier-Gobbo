@@ -1,14 +1,19 @@
 import './App.css'
-import {BarraBusqueda,Margen,Banner} from './componentes_principales'
+import Benvenuti from './bienvenida_usuario';
 
-
-function App() {      
+function App() {
+            
   return (
-    <div>
-      <Margen/>
-      <Banner/>
-      <BarraBusqueda/>
-    </div>
+    <>
+        <Benvenuti nombre="Juan" datos={["/fotojuan.jpg"]} />
+        <Benvenuti nombre="Facu" datos={["/fotoreactfacu.jpg"]} />
+        <div>
+          <audio controls> <source src = "/HAY QUE AGARRAR LA PALA Y PONERSE A LABURAR.mp3" type="audio/mpeg" /></audio>
+        </div>
+
+        <input type="text" placeholder="Escribe algo aquí..." />
+        <input type="text" placeholder="Escribe algo aquí..." />
+    </>
   )
 }
 
