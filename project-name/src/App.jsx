@@ -1,20 +1,19 @@
-import './App.css'
-import Benvenuti from './bienvenida_usuario';
-
+ import {Benvenuti, Recera, Buscacion} from './bienvenida_usuario';
+import { BarraBusqueda } from './componentes_principales.jsx';
+ 
 function App() {
-            
   return (
     <>
-        <Benvenuti nombre="Juan" datos={["/fotojuan.jpg"]} />
-        <Benvenuti nombre="Facu" datos={["/fotoreactfacu.jpg"]} />
-        <div>
-          <audio controls> <source src = "/HAY QUE AGARRAR LA PALA Y PONERSE A LABURAR.mp3" type="audio/mpeg" /></audio>
-        </div>
-
-        <input type="text" placeholder="Escribe algo aquí..." />
-        <input type="text" placeholder="Escribe algo aquí..." />
+      <div className={'top'}>
+        <Benvenuti />
+      </div>
+        <BarraBusqueda/>
+      
+      <div className={'bottom'}>
+        <Recera />
+      </div>
     </>
-  )
+  );
 }
 
 export default App
