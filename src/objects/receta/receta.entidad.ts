@@ -25,8 +25,7 @@ export class Receta extends BaseEntity {
 
   @Property()
   nombre!: string;
-
-  @Property()
-  fechaModificacion!: Date;
+@Property({ type: 'datetime', defaultRaw: 'CURRENT_TIMESTAMP', onUpdate: () => new Date() })
+fechaModificacion!: Date;
 
 }

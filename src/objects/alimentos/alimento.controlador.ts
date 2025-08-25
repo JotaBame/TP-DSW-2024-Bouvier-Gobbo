@@ -1,59 +1,92 @@
-import { Request, Response, NextFunction } from "express"
-import { alimentoRepositorio } from "./alimento.repositorio.js"
+import { Request, Response, NextFunction } from 'express';
+import { Alimento } from './alimento.entidad.js';
+import { orm } from '../../shared/orm.js';
+ 
+const em = orm.em;
 
-const repositorio = new alimentoRepositorio()
-
-function sanitizeAlimentoInput(req: Request, res: Response, next: NextFunction) {
+function sanitizeAlimentoInput(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   req.body.sanitizedInput = {
-    id: req.body.id,
-    nombre: req.body.nombre,
-    marca: req.body.marca,
-    presentacion: req.body.presentacion,
-    unidadMedida: req.body.unidadMedida,
-    idNutriente: req.body.idNutriente
-  }
-  next()
+      id: req.body.id,
+      nombre: req.body.nombre,
+       marca : req.body.marca,
+       presentacion: req.body.presentacion,
+     unidadMedida: req.body.unidadMedida,
+     alimentoNutrientes: req.body.alimentoNutrientes
+ 
+  };
+  //more checks here
+
+  Object.keys(req.body.sanitizedInput).forEach((key) => {
+    if (req.body.sanitizedInput[key] === undefined) {
+      delete req.body.sanitizedInput[key];
+    }
+  });
+  next();
 }
 
-// CRUD functions
 async function findAll(req: Request, res: Response) {
-  const alimentos = await repositorio.findAll();
-  res.json({ alimentos });
+  try {
+    const alimentos = await em.find(
+      Alimento,
+      {},
+      { populate: ['alimentoNutrientes'] }
+    );
+    res.status(200).json({ message: 'encontrado todos los alimentos', data: alimentos });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function findOne(req: Request, res: Response) {
-  const alimento = await repositorio.findOne({ id: req.params.id });
-  if (!alimento) {
-    res.status(404).send({ message: 'Alimento no encontrado' });
-    return;
+  try {
+    const id = Number.parseInt(req.params.id);
+    const alimento = await em.findOneOrFail(
+      Alimento,
+      { id },
+      { populate: ['alimentoNutrientes'] }
+    );
+    res.status(200).json({ message: 'encontrado alimento', data: alimento });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-  res.json(alimento);
 }
 
 async function add(req: Request, res: Response) {
-  const input = req.body.sanitizedInput;
-  const alimento = await repositorio.add(input);
-  res.status(201).send({ message: 'Alimento creado', alimento });
+  try {
+    const alimento = em.create(Alimento, req.body.sanitizedInput);
+    await em.flush();
+    res.status(201).json({ message: 'Alimento Creado', data: alimento });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function update(req: Request, res: Response) {
-  req.body.sanitizedInput.id = req.params.id;
-  const alimento = await repositorio.update(req.body.sanitizedInput);
-  if (!alimento) {
-    res.status(404).send({ message: 'Alimento no encontrado' });
-    return;
+  try {
+    const id = Number.parseInt(req.params.id);
+    const alimentoToUpdate = await em.findOneOrFail(Alimento, { id });
+    em.assign(alimentoToUpdate, req.body.sanitizedInput);
+    await em.flush();
+    res
+      .status(200)
+      .json({ message: 'alimento updated', data: alimentoToUpdate });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-  res.status(200).send({ message: 'Alimento actualizado correctamente', data: alimento });
 }
 
-async function deleteAlimento(req: Request, res: Response) {
-  const id = req.params.id;
-  const alimento = await repositorio.delete({ id });
-  if (!alimento) {
-    res.status(404).send({ message: 'Alimento no encontrado' });
-    return;
+async function remove(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const alimento = em.getReference(Alimento, id);
+    await em.removeAndFlush(alimento);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-  res.status(200).send({ message: 'Alimento borrado exitosamente' });
 }
 
-export { sanitizeAlimentoInput, findAll, findOne, add, update, deleteAlimento }
+export { sanitizeAlimentoInput, findAll, findOne, add, update, remove };

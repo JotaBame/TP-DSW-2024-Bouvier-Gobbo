@@ -34,13 +34,7 @@ async function add(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-  req.body.sanitizedInput.id = req.params.id;
-  const nutriente = await repositorio.update(req.body.sanitizedInput);
-  if (!nutriente) {
-    res.status(404).send({ message: 'Nutriente no encontrado' });
-    return;
-  }
-  res.status(200).send({ message: 'Nutriente actualizado correctamente', data: nutriente });
+
 }
 
 async function deleteNutriente(req: Request, res: Response) {

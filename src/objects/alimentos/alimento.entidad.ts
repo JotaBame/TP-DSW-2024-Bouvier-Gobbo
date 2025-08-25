@@ -1,30 +1,32 @@
-import { Entity, OneToMany, OneToOne, PrimaryKey, Property, Cascade, Rel} from "@mikro-orm/core";
+import { Entity, OneToMany, PrimaryKey, Property, Cascade, Rel, rel, Collection} from "@mikro-orm/core";
 import { BaseEntity } from "../../shared/baseEntity.entity.js";
 import { AlimentoNutrientes } from '../alimentoNutrientes/alimentoNutrientes.entidad.js';
 
 @Entity()
 export class Alimento extends BaseEntity {
-  
   @PrimaryKey({})
-  id!: number
+  id!: number;
 
   @Property({ nullable: false })
-  nombre!: string
+  nombre!: string;
 
   @Property({ nullable: false })
-  marca!: string
+  marca!: string;
 
   @Property({ nullable: false })
-  presentacion!: File | null
+  presentacion!: File | null;
 
   @Property({ nullable: false })
-  unidadMedida!: string
- 
-  @OneToOne(() => AlimentoNutrientes, (alimentoNutrientes) => alimentoNutrientes.alimento, {
-    cascade: [Cascade.ALL],
-    owner: true,
-  })
-  alimentoNutrientes!: Rel<AlimentoNutrientes[]>;
+  unidadMedida!: string;
+
+  @OneToMany(
+    () => AlimentoNutrientes,
+    (alimentoNutriente) => alimentoNutriente.alimento,
+    {
+      cascade: [Cascade.ALL],
+    }
+  )
+  alimentoNutrientes = new Collection<AlimentoNutrientes>(this);
 }
 
  

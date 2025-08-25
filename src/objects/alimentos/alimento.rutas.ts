@@ -1,14 +1,14 @@
 import { Router } from "express"
-import { sanitizeAlimentoInput, findAll,findOne, add,update, deleteAlimento} from "./alimento.controlador.js"
+import { sanitizeAlimentoInput, findAll,findOne, add,update, remove} from "./alimento.controlador.js"
 
-export const alimentorouter = Router()
+export const alimentoRouter = Router()
 
 
-alimentorouter.get("/", findAll)
-alimentorouter.get("/:id", findOne)
-alimentorouter.post("/", sanitizeAlimentoInput, add)
-alimentorouter.put("/:id", sanitizeAlimentoInput, update)
-alimentorouter.patch("/:id", sanitizeAlimentoInput, update)
-alimentorouter.delete("/:id", deleteAlimento)
+alimentoRouter.get('/', findAll);
+alimentoRouter.get('/:id', findOne);
+alimentoRouter.post('/', sanitizeAlimentoInput, add);
+alimentoRouter.put('/:id', sanitizeAlimentoInput, update);
+alimentoRouter.patch('/:id', sanitizeAlimentoInput, update);
+alimentoRouter.delete('/:id', remove);
 
- export default alimentorouter
+ export default alimentoRouter

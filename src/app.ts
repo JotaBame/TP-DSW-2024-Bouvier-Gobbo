@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express'
- import usuariorouter from './objects/usuarios/usuarios.rutas.js'
-import alimentorouter from './objects/alimentos/alimento.rutas.js'
+ import alimentorouter from './objects/alimentos/alimento.rutas.js'
 import 'reflect-metadata'
 import { orm, syncSchema } from './shared/orm.js'
 import { RequestContext } from '@mikro-orm/core'
@@ -15,8 +14,7 @@ app.use((req, res, next) => {
 })
 
 // antes de las rutas y middlewares de negocio
-app.use('/api/usuarios', usuariorouter)
- app.use('/api/alimentos', alimentorouter)
+  app.use('/api/alimentos', alimentorouter)
 
 
 await syncSchema() // never in production
