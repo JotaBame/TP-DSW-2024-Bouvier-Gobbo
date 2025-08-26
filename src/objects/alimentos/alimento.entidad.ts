@@ -1,6 +1,6 @@
 import { Entity, OneToMany, PrimaryKey, Property, Cascade, Rel, rel, Collection} from "@mikro-orm/core";
 import { BaseEntity } from "../../shared/baseEntity.entity.js";
-import { AlimentoNutrientes } from '../alimentoNutrientes/alimentoNutrientes.entidad.js';
+import { AlimentoNutrientes } from "../alimentoNutrientes/alimentoNutrientes.entidad.js";
 
 @Entity()
 export class Alimento extends BaseEntity {

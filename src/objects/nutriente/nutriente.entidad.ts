@@ -7,8 +7,7 @@ import {
   Collection
 } from '@mikro-orm/core';
  import { BaseEntity } from '../../shared/baseEntity.entity.js';
- import { AlimentoNutrientes } from '../alimentoNutrientes/alimentoNutrientes.entidad.js';
-
+import { AlimentoNutrientes } from '../alimentoNutrientes/alimentoNutrientes.entidad.js';
 @Entity()
 export class Nutriente extends BaseEntity {
   @PrimaryKey()
