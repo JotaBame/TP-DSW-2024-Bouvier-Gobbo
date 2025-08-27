@@ -4,7 +4,7 @@ GET http://localhost:3000/api/alimentos
 
 ### obtener un alimento
 
-get http://localhost:3000/api/alimentos/Pollo
+get http://localhost:3000/api/alimentos/1
 
 ### crear un nuevo alimento
 
@@ -12,31 +12,31 @@ POST http://localhost:3000/api/alimentos
 Content-Type: application/json
 
 {
-  "id": 1,
   "nombre": "Yogurt",
-  "marca": "La Serenísima",
-  "presentacion": null,
+  "marca": "Sancor",
+  "Presentacion": null,
   "unidadMedida": "gramos"
+
 }
 ### Modificar elemento completo 
-put http://localhost:3000/api/alimentos/Yogurt
+put http://localhost:3000/api/alimentos/1
 Content-Type: application/json
 
 {
   "nombre": "Yot", 
   "marca": "Sancor", 
   "presentacion": null, 
-  "unidadMedida": 123
+  "unidadMedida": "kilos"
 
 }
 ### Modificar parte de elemento
-PATCH http://localhost:3000/api/alimentos/Yogurt
+PATCH http://localhost:3000/api/alimentos/1
 Content-Type: application/json
 
 {
-  "marca": "Sancor"
+  "marca": "Ilolay"
 
 }
 ###
-DELETE http://localhost:3000/api/alimentos/Yogurt
+DELETE http://localhost:3000/api/alimentos/5
 Content-Type: application/json

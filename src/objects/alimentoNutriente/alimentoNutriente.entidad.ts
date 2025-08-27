@@ -1,6 +1,6 @@
 import {
   Entity,
-  OneToOne,
+  PrimaryKeyProp,
   Property,
   Cascade,
   Rel,
@@ -12,14 +12,11 @@ import { Alimento } from '../alimentos/alimento.entidad.js';
 import { BaseEntity } from '../../shared/baseEntity.entity.js';
 
 @Entity()
-export class AlimentoNutrientes extends BaseEntity {
-  
-  @ManyToOne(() => Alimento, {
-    nullable: false,
-  })
+export class alimentoNutriente extends BaseEntity{
+  @ManyToOne(() => Alimento, { nullable: false, primary: true })
   alimento!: Rel<Alimento>;
 
-  @ManyToOne(() => Nutriente, { nullable: false, cascade: [Cascade.ALL] })
+  @ManyToOne(() => Nutriente, { nullable: false, primary: true })
   nutriente!: Rel<Nutriente>;
 
   @Property()

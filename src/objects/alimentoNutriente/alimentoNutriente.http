@@ -1,0 +1,32 @@
+### Obtener todos los alimentoNutriente
+GET http://localhost:3000/api/alimentoNutriente
+
+### Obtener un alimentoNutriente
+GET http://localhost:3000/api/alimentoNutriente/3/1
+
+### Crear un alimentoNutriente
+POST http://localhost:3000/api/alimentoNutriente/2/1
+Content-Type: application/json
+
+{
+ "cantidadNutriente": 10
+}
+
+### Modificar alimentoNutriente completo
+PUT http://localhost:3000/api/alimentoNutriente/2/1
+Content-Type: application/json
+
+{
+  "cantidadNutriente": 20
+}
+
+### Modificar parte del alimentoNutriente
+PATCH http://localhost:3000/api/alimentoNutriente/1/1
+Content-Type: application/json
+
+{
+  "cantidadNutriente": 15
+}
+
+### Borrar alimentoNutriente
+DELETE http://localhost:3000/api/alimentoNutriente/1/1

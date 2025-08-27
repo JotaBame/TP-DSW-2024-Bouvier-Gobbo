@@ -11,6 +11,8 @@ import { CategoriaSuscripcion } from '../categoria/categoria.entidad.js';
  
 @Entity()
 export class Precio extends BaseEntity {
+  @PrimaryKey()
+  id!: number;
   @ManyToOne(() => CategoriaSuscripcion, { nullable: false, cascade: [Cascade.ALL] })
   categoria!: CategoriaSuscripcion;
 

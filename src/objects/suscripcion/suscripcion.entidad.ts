@@ -27,7 +27,10 @@ export class Suscripcion extends BaseEntity {
 
   @Property()
   fechaSuscripcion!: Date;
-  
+
   @Property()
   fechaVencimiento!: Date;
+
+  @PrimaryKey()
+  id!: number;
 }

@@ -13,8 +13,9 @@ import { AlimentoReceta } from '../alimentoReceta/alimentoReceta.entidad.js';
  
 @Entity()
 export class Receta extends BaseEntity {
-
- @OneToOne(() => Usuario)
+  @PrimaryKey()
+  id!: number;
+  @OneToOne(() => Usuario)
   autor!: Usuario;
 
   @ManyToOne(() => AlimentoReceta, { nullable: false, cascade: [Cascade.ALL] })
@@ -25,7 +26,10 @@ export class Receta extends BaseEntity {
 
   @Property()
   nombre!: string;
-@Property({ type: 'datetime', defaultRaw: 'CURRENT_TIMESTAMP', onUpdate: () => new Date() })
-fechaModificacion!: Date;
-
+  @Property({
+    type: 'datetime',
+    defaultRaw: 'CURRENT_TIMESTAMP',
+    onUpdate: () => new Date(),
+  })
+  fechaModificacion!: Date;
 }

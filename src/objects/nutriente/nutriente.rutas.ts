@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { sanitizeNutrienteInput, findAll, findOne, add, update, deleteNutriente } from "./nutriente.controlador.js"
+import { sanitizeNutrienteInput, findAll, findOne, add, update, remove } from "./nutriente.controlador.js"
 
 export const nutrienterouter = Router()
 
@@ -8,6 +8,6 @@ nutrienterouter.get("/:id", findOne)
 nutrienterouter.post("/", sanitizeNutrienteInput, add)
 nutrienterouter.put("/:id", sanitizeNutrienteInput, update)
 nutrienterouter.patch("/:id", sanitizeNutrienteInput, update)
-nutrienterouter.delete("/:id", deleteNutriente)
+nutrienterouter.delete("/:id", remove)
 
 export default nutrienterouter
