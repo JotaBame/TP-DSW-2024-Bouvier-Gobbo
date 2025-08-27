@@ -1,8 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express'
  import alimentorouter from './objects/alimentos/alimento.rutas.js'
+ import alimentoNutrienterouter from './objects/alimentoNutriente/alimentoNutriente.rutas.js'
 import 'reflect-metadata'
 import { orm, syncSchema } from './shared/orm.js'
 import { RequestContext } from '@mikro-orm/core'
+import nutrienterouter from './objects/nutriente/nutriente.rutas.js'
 
 const app = express()
 app.use(express.json()) 
@@ -15,6 +17,8 @@ app.use((req, res, next) => {
 
 // antes de las rutas y middlewares de negocio
   app.use('/api/alimentos', alimentorouter)
+  app.use('/api/alimentoNutriente', alimentoNutrienterouter);
+  app.use('/api/nutriente', nutrienterouter)
 
 
 await syncSchema() // never in production

@@ -1,6 +1,6 @@
 import { Entity, OneToMany, PrimaryKey, Property, Cascade, Rel, rel, Collection} from "@mikro-orm/core";
 import { BaseEntity } from "../../shared/baseEntity.entity.js";
-import { AlimentoNutrientes } from "../alimentoNutrientes/alimentoNutrientes.entidad.js";
+import { alimentoNutriente } from "../alimentoNutriente/alimentoNutriente.entidad.js";
 
 @Entity()
 export class Alimento extends BaseEntity {
@@ -13,20 +13,20 @@ export class Alimento extends BaseEntity {
   @Property({ nullable: false })
   marca!: string;
 
-  @Property({ nullable: false })
+  @Property({ nullable: true })
   presentacion!: File | null;
 
   @Property({ nullable: false })
   unidadMedida!: string;
 
   @OneToMany(
-    () => AlimentoNutrientes,
+    () => alimentoNutriente,
     (alimentoNutriente) => alimentoNutriente.alimento,
     {
       cascade: [Cascade.ALL],
     }
   )
-  alimentoNutrientes = new Collection<AlimentoNutrientes>(this);
+  alimentoNutrientes = new Collection<alimentoNutriente>(this);
 }
 
  
