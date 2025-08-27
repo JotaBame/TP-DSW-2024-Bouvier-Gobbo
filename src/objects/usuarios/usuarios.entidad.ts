@@ -19,6 +19,7 @@ export class Usuario extends BaseEntity {
 
   @Property()
   email!: string;
+  
   @Property()
   peso!: number;
 
