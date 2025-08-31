@@ -18,6 +18,7 @@
     "@mikro-orm/mysql": "6.4.16",
     "@mikro-orm/seeder": "6.4.16",
     "@mikro-orm/sql-highlighter": "1.0.1",
+    "dependencies": "^0.0.1",
     "mikro-orm": "^6.4.16",
     "mysql2": "^3.14.3",
     "pnpm": "^10.12.1",
